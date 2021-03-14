@@ -1,0 +1,21 @@
+strace - program służący do śledzenia sygnałów i wywołań systemowych. Analizuje on interakcję między danym procesem a systemem operacyjnym.
+
+strace "program" # polecenie uruchomi się przez strace, dzięki czemu na terminal wypiszą się wszystkie polecenia systemowe wydawane
+przez proces aż do momentu jesgo zakończenia.
+
+strace -e trace="polecenie_systemowe" "program" # -e -trace filtruje wyświetlanie poleceń systemowych na tylko wybrane.
+Przy chęci śledzenia więcej niż jednego polecenia systemowego, należy je wypisać oddzielając przecinkiem.
+
+Np:
+strace -e trace=openat,close,read,write ./a.out
+
+strace -o "plik" "polecenie" # zapis logów strace do pliku.
+
+strace -p "PID" # podłączenie się do już działającego procesu. Mogą byc wymagane podwyższone uprawinienia (sudo).
+
+strace -f "program" # śledzenie procesu oraz jego procesów potomnych.
+
+strace -t "program" # wyświetlenie dokładnego czasu wywołań systemowych. -ttt wyświetli czas w formie liczby sekund od początku 1970 roku.
+-r - czas względny wykonania każdego polecenia.
+
+strace -c "program" # wyświetlenie listy wywołań systemowych programu.
