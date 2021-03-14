@@ -1,0 +1,7 @@
+strace -r ./a.out # -r spowoduje, że zostaną wyświetlone informacje o czasie wykonania pojedynczej czynności.
+
+Program zabity przez:
+0.000045 --- SIGSEGV {si_signo=SIGSEGV, si_code=SEGV_MAPERR, si_addr=0x55ee42f09000} ---
+0.072688 +++ killed by SIGSEGV (core dumped) +++
+
+Oznacza to naruszenie ochrony pamięci - prawdopodobnie chodzi o przekroczenie rozmiaru tablicy i próbę odczytu danych z pamięci nienależącej do programu.
