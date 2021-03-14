@@ -1,0 +1,3 @@
+#!/bin/bash
+
+find . -iname "$1" -mtime -"$2" -print0 | tar -cvf $3.tar --null -T -
