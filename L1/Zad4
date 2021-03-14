@@ -1,0 +1,78 @@
+#!/bin/bash
+
+noDaysNumber() {
+
+echo "Brak podanej ilosci dni. Proszę ją podać (3): "
+read daysNumber
+
+if [ -z "${daysNumber}" ]; then
+    daysNumber=3
+fi
+
+}
+
+#########################################
+
+noMask() {
+
+echo "Brak podanej maski nazw. Proszę ją podać (*): "
+read mask
+
+if [ -z "${mask}" ]; then
+    mask="*"
+fi
+
+}
+
+#########################################
+
+noTarName() {
+
+echo "Brak podanej nazwy tara. Proszę ją podać (archiwum.tar): "
+read tarName
+
+if [ -z "${tarName}" ]; then
+    tarName=archiwum.tar
+fi
+
+}
+
+#########################################
+
+while getopts "n:m:a:" choice; do # Dwukropek oznacza, że dana opcja potrzebuje dodatkowego argumentu. Np. -a nazwa.tar
+    case "${choice}" in
+        n)
+            daysNumber=${OPTARG}
+            ((liczbaDni >= 0)) || noDaysNumber
+            ;;
+        m)
+            mask=${OPTARG}
+            ;;
+	a)
+	    tarName=${OPTARG}
+	    ;;
+    esac
+done
+
+shift $((OPTIND-1))
+
+#########################################
+
+if [ -z "$daysNumber" ]; then
+    noDaysNumber
+fi
+
+if [ -z "$mask" ]; then
+    noMask
+fi
+
+if [ -z "$tarName" ]; then
+    noTarName
+fi
+
+tar -cvf $tarName $(find . -iname "$mask" -mtime "-$daysNumber")
+
+# Odkomentować do sprawdzania poprawności getoptsa
+#echo "liczba dni = ${daysNumber}"
+#echo "maska = ${mask}"
+#echo "nazwa = ${tarName}"
