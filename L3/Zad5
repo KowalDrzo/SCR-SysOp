@@ -1,0 +1,12 @@
+#!/bin/sh
+
+trap 'echo "Ktoś chce mnie wyłączyć"' 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
+
+while :
+do
+	date +"%T"
+	sleep 5
+done
+
+# Taki proces dalej da się zabić używając kill -9 (sygnał bezwarunkowo kończący proces), 
+# jednak już zwykłe Ctrl+C nie wystarczy.
