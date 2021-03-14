@@ -1,0 +1,5 @@
+#!/bin/bash
+
+mknod fifo1 p
+
+cat > fifo1
