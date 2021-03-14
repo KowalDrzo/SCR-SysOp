@@ -1,0 +1,15 @@
+# Obniżenie priorytetu działającego procesu:
+
+renice 15 PID_procesu # Obniża priorytet procesu do 15 (-19 oznacza najwyższy priorytet, 19 najniższy. Większość procesów domyślnie ma średni priorytet, czyli 0).
+
+# Bez specjalnych uprawnień można jedynie podnosić liczbę NICE, czyli obniżać priorytet procesu.
+
+# Włączanie procesu z obniżonym priorytetem:
+
+nice -15 ./skrypt # Uruchomi skrypt z liczbą NICE równą 15, czyli dość niskim priorytetem.
+
+# Przykład:
+
+ps -el | grep 'pulseaudio' # Sprawdzam PID procesu odpowiedzialnego za dźwięk
+
+renice 15 PID_procesu # W efekcie dźwięki systemowe będą się przycinać po włączeniu obciążającego programu np. Matlaba
