@@ -1,0 +1,24 @@
+# Ograniczenie ilości procesów
+
+ulimit 10
+
+###################################################
+
+# Skrypt powielający się w nieskończoność:
+
+#!/bin/bash
+
+./powielacz &
+./powielacz &
+
+sleep 50
+
+###################################################
+
+# Skrypt można zabić
+
+killall powielacz # Zabija wszystkie procesy o tej nazwie, jednak chwilę to potrwa...
+
+# Działa także:
+
+killall -9 -u nazwa_uzytkownika # Zabija wszystkie procesy użytkownika. Nastąpi także wylogowanie. To także chwilę potrwa..
